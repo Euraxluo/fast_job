@@ -1,4 +1,4 @@
-### typing_environs 
+### fast_job 
 - name = "fast_job"
 - description = "Provides scheduling apis and scheduling and task-related services"
 - authors = ["Euraxluo <euraxluo@qq.com>"]
