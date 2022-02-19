@@ -6,16 +6,30 @@
 from fast_job import schedule, task_api_router_init
 
 
-@schedule.task('test', summer="test.py", site=1, description="test")
-def test(site: int):
-    if site == 67:
+@schedule.task('task_id', summer="task_test", tag=2, description="test")
+def test(tag: int):
+    print(tag)
+    if tag == 67:
         print("报错")
         raise Exception("city error")
-    if site == 1:
+    if tag == 1:
         import time
         time.sleep(4)
-    print("test.py", site)
-    return site
+    print("test.py", tag)
+    return tag
+
+
+@schedule.task('task_id2', summer="task_test", tag=2, description="test")
+def test2(tag: int):
+    print(tag)
+    if tag == 67:
+        print("报错")
+        raise Exception("city error")
+    if tag == 1:
+        import time
+        time.sleep(4)
+    print("test.py", tag)
+    return tag
 
 
 router = task_api_router_init()

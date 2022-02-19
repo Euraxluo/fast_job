@@ -6,7 +6,32 @@
 import datetime
 from typing import List, Any, Mapping, Optional, Tuple
 from pydantic import BaseModel
-from apscheduler.job import Job
+from apscheduler.job import Job as scheduleJob
+
+from enum import Enum
+
+
+class ExceptionCode(Enum):
+    ScheduleFailed = 8000
+    ScheduleCreateExistsFailed = 8100
+    ScheduleNotFoundFailed = 8101
+    ScheduleRetryFailed = 8102
+
+
+class SuccessMessage(Enum):
+    JobSetCronSuccess = "Cron scheduler creation success"
+    JobSetDatetimeSuccess = "Datetime scheduler creation success"
+    JobSetIntervalSuccess = "Interval scheduler creation success"
+
+    JobGetAllSuccess = "Get all task information is get success"
+    JobGetSuccess = "Get task information is get success"
+
+    JobModifySuccess = "Modify the task scheduling information success"
+    JobResumeSuccess = "Resume the task scheduling information success"
+    JobPauseSuccess = "Pause the task scheduling information success"
+    JobRemoveSuccess = "Remove the task scheduling information success"
+
+    JobRetrySuccess = "Task Retry succeeded"
 
 
 class SchedulesBase(BaseModel):
@@ -43,7 +68,7 @@ class Response(BaseModel):
 
 
 class Job(object):
-    def __init__(self, job: Job):
+    def __init__(self, job: scheduleJob):
         from fast_job.job_schedule import schedule
         tag, job_id = schedule.get_job_tag_with_job_id(job.id)
         self.tag = tag

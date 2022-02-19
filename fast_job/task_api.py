@@ -3,6 +3,7 @@
 # Copyright (c) 2021
 # author: Euraxluo
 
+import enum
 import typing
 from fastapi.dependencies.utils import *
 from fastapi.routing import *
@@ -317,11 +318,11 @@ def task_api_router_init():
                                            methods=["POST"],
                                            name=task_id,
                                            summary=task_message["summer"])
-    from fast_job.job_api import job_api_router
+    from fast_job.job_api import fast_job_api_router
     from fast_job.schema import Response
 
-    @job_api_router.get("/all_task", response_model=Response, summary="all load tasks")
-    def all_task():
+    @fast_job_api_router.get("/tasks", response_model=Response, summary="all load tasks")
+    def tasks():
         return Response(data=JobSchedule.__task_manage__)
 
     return task_api_router

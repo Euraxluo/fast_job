@@ -58,18 +58,19 @@ class JobSchedule(BackgroundTasks):
         self.end_time = None
         self.result__collection = []
 
-    def setup(self, prefix: str, redis, logger):
+    def setup(self, prefix: str, redis, logger, distributed=False):
         """
         延迟初始化
         """
-        self.__logger__ = logger
-        self.__redis__ = redis
-        self.__prefix = prefix
-        self.__registry_key = self.prefix + self.registry_key
-        self.__run_times_key = self.prefix + self.run_times_key
-        self.__jobs_key = self.prefix + self.jobs_key
-
-        self.__redis_job_store__ = RedisJobStore(jobs_key=self.__jobs_key, run_times_key=self.__run_times_key)
+        self.logger = logger
+        self.redis = redis
+        self.prefix = prefix
+        self.registry_key = self.prefix + self.registry_key
+        self.run_times_key = self.prefix + self.run_times_key
+        self.jobs_key = self.prefix + self.jobs_key
+        self.__redis_job_store__ = RedisJobStore(jobs_key=self.jobs_key, run_times_key=self.run_times_key)
+        self.__redis_job_store__.redis = self.redis
+        self.init_scheduler(distributed=distributed)
 
     @classmethod
     def task(cls, task_id=None, summer=None, **params):
@@ -114,6 +115,8 @@ class JobSchedule(BackgroundTasks):
                 background_task.add_task(func=run_function)
                 return Response(data={"func": func.__name__, "args": args, "kwargs": kwargs, "async": run_async, "result": run_result, "error": error})
 
+            if _task_id in cls.__task_manage__:
+                raise KeyError("Key Error,You cannot wrap two functions with the same task ID ")
             cls.__task_manage__[_task_id] = {"func": func, "wrap": wrapper_task, "summer": _summer, "params": {**_params}}
             return wrapper_task
 
@@ -208,8 +211,8 @@ class JobSchedule(BackgroundTasks):
         """
         Saves task run logs to rdb
         """
-        work_record_key = self.prefix + f"job_schedule:tag.{work.tag}:job.{work.job_id}"
-        work_runtime_queue = self.prefix + f"job_schedule:tag.{work.tag}"
+        work_record_key = self.prefix + f"job_schedule:log:tag.{work.tag}:job.{work.job_id}"
+        work_runtime_queue = self.prefix + f"job_schedule:log:tags:tag.{work.tag}"
         with self.__redis__.pipeline(transaction=False) as p:
             p.lpush(work_record_key, work.json())
             p.ltrim(work_record_key, 0, 99)
@@ -223,7 +226,7 @@ class JobSchedule(BackgroundTasks):
         """
         list work record from rdb
         """
-        work_record_key = self.__prefix + f"job_schedule:tag.{tag}:job.{job_id}"
+        work_record_key = self.prefix + f"job_schedule:log:tag.{tag}:job.{job_id}"
         result: typing.List[TaskWorkRecord] = []
         for work_byte in self.__redis__.lrange(work_record_key, start, end):
             work = json.loads(work_byte)
@@ -234,23 +237,23 @@ class JobSchedule(BackgroundTasks):
         """
         del work record from rdb
         """
-        work_record_key = self.__prefix + f"job_schedule:tag.{tag}:job.{job_id}"
+        work_record_key = self.prefix + f"job_schedule:log:tag.{tag}:job.{job_id}"
         return self.__redis__.delete(work_record_key)
 
     def job_key(self, job_id: str, tag: str, ):
-        return self.__prefix + f"job_schedule:tag.{tag}:job.{job_id}"
+        return self.prefix + f"job_schedule:tag.{tag}:job.{job_id}"
 
     def check_job_key(self, job_id: str, tag: str) -> bool:
-        return (self.__prefix + f"job_schedule:tag.{tag}:job.{job_id}") in job_id
+        return (self.prefix + f"job_schedule:tag.{tag}:") in job_id
 
     def get_real_job_id(self, job_id: str) -> str:
-        if self.__prefix in job_id:
+        if self.prefix in job_id:
             return job_id.split(':job.')[-1]
         else:
             return job_id
 
     def get_job_tag_with_job_id(self, job_id: str) -> tuple:
-        if self.__prefix in job_id:
+        if self.prefix in job_id:
             return tuple([job_id.split(':job.')[0].split(':tag.')[-1], job_id.split(':job.')[-1]])
         else:
             return tuple(['', job_id])
@@ -310,7 +313,7 @@ class JobSchedule(BackgroundTasks):
         负载均衡
         """
         load_key = f"{self.__registry_key}.load:{self.__distributed_id__}"
-        distributed_lock_key = f"{self.__prefix}:lock:{job_key}"
+        distributed_lock_key = f"{self.prefix}:lock:{job_key}"
         if distributed and self.vote(job_key=job_key, lock_name=distributed_lock_key, load_key=load_key):
             acquire = acquire_re_entrant_lock_with_timeout(conn=self.__redis__, lock_name=distributed_lock_key, identifier=self.__distributed_id__, acquire_timeout=0)
             flag = acquire(default=-1, transform=lambda x: self.__distributed_id__ if x is None else False)
@@ -328,7 +331,7 @@ class JobSchedule(BackgroundTasks):
         else:
             yield True
 
-    async def task_scheduler(self, job_id: str, task_id: str, tag: str) -> None:
+    async def task_scheduler(self, job_id: str, task_id: str, tag: str, *args, **kwargs) -> None:
         """
         job_id:待调度的任务
         task_id:可调度单元
@@ -397,22 +400,56 @@ class JobSchedule(BackgroundTasks):
     def __getattr__(self, name):
         return getattr(self.__schedule__, name)
 
-    def __getitem__(self, name):
-        return self.__schedule__[name]
-
-    def __setitem__(self, name, value):
-        self.__schedule__[name] = value
-
-    def __delitem__(self, name):
-        del self.__schedule__[name]
-
     @property
     def logger(self):
         return self.__logger__
 
+    @logger.setter
+    def logger(self, value):
+        JobSchedule.__logger__ = value
 
-# 创建schedule对象
+    @property
+    def redis(self):
+        return self.__redis__
+
+    @redis.setter
+    def redis(self, value):
+        JobSchedule.__redis__ = value
+
+    @property
+    def prefix(self):
+        return JobSchedule.__prefix
+
+    @prefix.setter
+    def prefix(self, value):
+        JobSchedule.__prefix = value
+
+    @property
+    def registry_key(self):
+        return JobSchedule.__registry_key
+
+    @registry_key.setter
+    def registry_key(self, value):
+        JobSchedule.__registry_key = value
+
+    @property
+    def run_times_key(self):
+        return JobSchedule.__run_times_key
+
+    @run_times_key.setter
+    def run_times_key(self, value):
+        JobSchedule.__run_times_key = value
+
+    @property
+    def jobs_key(self):
+        return JobSchedule.__jobs_key
+
+    @jobs_key.setter
+    def jobs_key(self, value):
+        JobSchedule.__jobs_key = value
+
+
+# Create a Schedule object
 schedule: typing.Union[AsyncIOScheduler, JobSchedule] = JobSchedule()
-
-# 只允许导出 redis_client 实例化对象
-__all__ = ["schedule"]
+# Only instantiation objects are allowed to be exported
+__all__ = ["schedule", "JobSchedule"]

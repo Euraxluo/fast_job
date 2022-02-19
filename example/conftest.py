@@ -11,7 +11,7 @@ from typing import Union, List, Callable
 
 class RedisHelper(object):
 
-    def __init__(self, host='localhost', port='6379', db=0, password='redis', decode_responses=False):
+    def __init__(self, host='127.0.0.1', port='6379', db=1, password='redis', decode_responses=False):
         redis.ConnectionPool()
         self.pool = redis.ConnectionPool(host=host, port=port, db=db, password=password, decode_responses=decode_responses)
         self.r = redis.Redis(connection_pool=self.pool)

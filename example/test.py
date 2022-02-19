@@ -9,24 +9,23 @@ import nest_asyncio
 nest_asyncio.apply()
 
 from fastapi import FastAPI
-from logging import getLogger
+from loguru import logger
 
-from fast_job import schedule
+from fast_job import schedule, fast_job_api_router
 from example.jobs import router
 from example.conftest import rdb as redis
 
-logger = getLogger()
 
 
 async def registry_schedule():
     # TasksRdbRecord.set_redis_client(redis)  # 设置redis客户端
     # TasksRdbRecord.get_record_rdb_key = lambda site, job_id: f'jobs:log:site:{site}:task:{job_id}'  # 设置日志key
     # TasksRdbRecord.get_record_runtime_queue_rdb_key = lambda site: f'jobs:log_view:site:{str(site)}'  # 设置key
-    schedule.setup(prefix='test', logger=logger, redis=redis)
+    schedule.setup(prefix='test:', logger=logger, redis=redis, distributed=True)
     # 设置其他的key
 
     # 初始化调度器
-    schedule.init_scheduler(distributed=True)
+    # schedule.init_scheduler(distributed=True)
 
 
 async def shutdown_connect():
@@ -35,21 +34,15 @@ async def shutdown_connect():
 
 
 app = FastAPI()
+# fast_job_api_router.add_event_handler()
 
-app.include_router(router, prefix='/test')  # include router
-
-
-# 启动服务器
-def runserver():
-    app.add_event_handler("startup", registry_schedule)  # 注册调度器
-    app.add_event_handler("shutdown", shutdown_connect)  # 关闭调度器
-
-    for route in app.routes:
-        if hasattr(route, "methods"):
-            print({'path': route.path, 'name': route.name, 'methods': route.methods})
-    import uvicorn
-    uvicorn.run(app='test:app', access_log=True)
-
+app.add_event_handler("startup", registry_schedule)  # 注册调度器
+app.add_event_handler("shutdown", shutdown_connect)  # 关闭调度器
+# fast_job_api_router.mount("/task", router)
+app.include_router(fast_job_api_router, prefix='/test', tags=["jobs"])  # include router
+app.include_router(router, prefix='/task', tags=["task"])  # include router
 
 if __name__ == '__main__':
-    runserver()
+    import uvicorn
+
+    uvicorn.run(app='test:app', access_log=True)
