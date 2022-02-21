@@ -3,33 +3,21 @@
 # Copyright (c) 2021
 # author: Euraxluo
 
-from fast_job import schedule, task_api_router_init
+from fast_job import *
 
 
-@schedule.task('task_id', summer="task_test", tag=2, description="test")
+@schedule.task('task1', summer="test_task_1", tag='test', description="test_task_1")
 def test(tag: int):
-    print(tag)
-    if tag == 67:
-        print("报错")
-        raise Exception("city error")
-    if tag == 1:
-        import time
-        time.sleep(4)
-    print("test.py", tag)
-    return tag
+    print({"msg": "test_task_1", "tag": tag})
+    return {"msg": "test_task_1", "tag": tag}
 
 
-@schedule.task('task_id2', summer="task_test", tag=2, description="test")
+@schedule.task('task2', summer="test_task_2", tag='test', description="test_task_2")
 def test2(tag: int):
-    print(tag)
-    if tag == 67:
-        print("报错")
-        raise Exception("city error")
-    if tag == 1:
-        import time
-        time.sleep(4)
-    print("test.py", tag)
-    return tag
+    print({"msg": "test_task_2", "tag": tag})
+    return {"msg": "test_task_2", "tag": tag}
 
 
-router = task_api_router_init()
+@schedule.task('task3', summer="test_task_3", tag='test', description="test_task_3")
+def task3(tag: int):
+    raise Exception(str({"msg": "test_task_2", "tag": tag}))

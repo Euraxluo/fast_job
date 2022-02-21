@@ -3,10 +3,8 @@
 # Copyright (c) 2022
 # author: Euraxluo
 
-from fast_job.job_schedule import schedule
-from fast_job.task_api import task_api_router, task_api_router_init
-from fast_job.job_api import fast_job_api_router
+from fast_job.job_api import schedule, fast_job_api_router
 
-__version__ = "0.1.6"
+__version__ = "0.1.8"
 __description__ = """Provides scheduling apis and scheduling and task-related services"""
-__all__ = ["task_api_router", "task_api_router_init", "fast_job_api_router", "schedule"]
+__all__ = ["fast_job_api_router", "schedule"]

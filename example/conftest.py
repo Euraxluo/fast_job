@@ -6,7 +6,7 @@
 
 import redis
 import json
-from typing import Union, List, Callable
+from typing import Union, Callable
 
 
 class RedisHelper(object):
@@ -31,5 +31,5 @@ class RedisHelper(object):
             return json.loads(data)
         return instance().__dict__()
 
- 
+
 rdb = RedisHelper().rdb()

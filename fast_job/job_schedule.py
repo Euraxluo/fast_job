@@ -10,7 +10,7 @@ import typing
 import contextlib
 import traceback
 from functools import wraps
-from fastapi import BackgroundTasks
+from fastapi import BackgroundTasks, APIRouter
 from starlette.background import BackgroundTask
 from threading import Thread
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -20,6 +20,8 @@ from apscheduler.jobstores.redis import RedisJobStore
 from fast_job.lock import *
 from fast_job.schema import TaskWorkRecord, Response
 from fast_job.sonyflake import SonyFlakeId
+
+fast_job_api_router = APIRouter()
 
 
 class JobSchedule(BackgroundTasks):
@@ -36,6 +38,8 @@ class JobSchedule(BackgroundTasks):
     __registry_key = "job_schedule:registry"
     __run_times_key = "job_schedule:run_times"
     __jobs_key = "job_schedule:jobs"
+
+    __setup_flag__ = False  # is init?
 
     __distributed = False
 
@@ -65,12 +69,15 @@ class JobSchedule(BackgroundTasks):
         self.logger = logger
         self.redis = redis
         self.prefix = prefix
-        self.registry_key = self.prefix + self.registry_key
-        self.run_times_key = self.prefix + self.run_times_key
-        self.jobs_key = self.prefix + self.jobs_key
+
+        if not JobSchedule.__setup_flag__:
+            self.registry_key = self.prefix + self.registry_key
+            self.run_times_key = self.prefix + self.run_times_key
+            self.jobs_key = self.prefix + self.jobs_key
         self.__redis_job_store__ = RedisJobStore(jobs_key=self.jobs_key, run_times_key=self.run_times_key)
         self.__redis_job_store__.redis = self.redis
         self.init_scheduler(distributed=distributed)
+        JobSchedule.__setup_flag__ = True
 
     @classmethod
     def task(cls, task_id=None, summer=None, **params):
@@ -113,11 +120,19 @@ class JobSchedule(BackgroundTasks):
 
                 cls.__task_manage__[_task_id].update({"args": args, "kwargs": kwargs})
                 background_task.add_task(func=run_function)
+                if error is not None:
+                    return Response(code=500, data={"func": func.__name__, "args": args, "kwargs": kwargs, "async": run_async, "result": run_result, "error": error})
                 return Response(data={"func": func.__name__, "args": args, "kwargs": kwargs, "async": run_async, "result": run_result, "error": error})
 
             if _task_id in cls.__task_manage__:
                 raise KeyError("Key Error,You cannot wrap two functions with the same task ID ")
             cls.__task_manage__[_task_id] = {"func": func, "wrap": wrapper_task, "summer": _summer, "params": {**_params}}
+            fast_job_api_router.add_api_route(path="/task/" + _task_id,
+                                              endpoint=wrapper_task,
+                                              methods=["POST"],
+                                              name=_task_id,
+                                              summary=_summer)
+
             return wrapper_task
 
         return decorator
@@ -238,7 +253,7 @@ class JobSchedule(BackgroundTasks):
         del work record from rdb
         """
         work_record_key = self.prefix + f"job_schedule:log:tag.{tag}:job.{job_id}"
-        return self.__redis__.delete(work_record_key)
+        return self.redis.delete(work_record_key)
 
     def job_key(self, job_id: str, tag: str, ):
         return self.prefix + f"job_schedule:tag.{tag}:job.{job_id}"
@@ -339,10 +354,14 @@ class JobSchedule(BackgroundTasks):
         """
         self.start_time = time.time()
         job = schedule.get_job(self.job_key(tag=tag, job_id=job_id))
-        current_job_next_run_time = job.next_run_time
-        next_job_next_run_time = job.trigger.get_next_fire_time(current_job_next_run_time, current_job_next_run_time)
-        current_job_key = job_id + ':' + str(current_job_next_run_time.timestamp())
-        next_job_key = job_id + ':' + str(next_job_next_run_time.timestamp())
+        if job:
+            current_job_next_run_time = job.next_run_time
+            next_job_next_run_time = job.trigger.get_next_fire_time(current_job_next_run_time, current_job_next_run_time)
+            current_job_key = job_id + ':' + str(current_job_next_run_time.timestamp())
+            next_job_key = job_id + ':' + str(next_job_next_run_time.timestamp())
+        else:
+            current_job_key = job_id + ':' + str(time.time())
+            next_job_key = job_id + ':' + str(time.time())
         with self.load_balance(job_key=current_job_key, next_job_key=next_job_key, distributed=self.__distributed) as run:
             if run:
                 self.result = []
@@ -354,7 +373,7 @@ class JobSchedule(BackgroundTasks):
                     task_func(background_task=self, tag=tag)
                 except Exception as _:
                     self.error = traceback.format_exc()
-                    self.__logger__.error({"error": traceback.format_exc(), "task_id": task_id})
+                    self.__logger__.error({"error": traceback.format_exc(), "task_manage": self.__task_manage__, "task_id": task_id})
                 else:
                     await self()
                 self.end_time = time.time()
@@ -362,11 +381,10 @@ class JobSchedule(BackgroundTasks):
 
     def init_scheduler(self, distributed=False) -> None:
         self.__distributed = distributed
-        job_stores = {
-            'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite'),
-        }
         if self.__redis_job_store__:
-            job_stores['default'] = self.__redis_job_store__
+            job_stores = {'default': self.__redis_job_store__}
+        else:
+            job_stores = {'default': SQLAlchemyJobStore(url='sqlite:///jobs.sqlite')}
         self.__schedule__ = AsyncIOScheduler(jobstores=job_stores)
         self.__schedule__.start()
         # 上线注册
@@ -402,7 +420,7 @@ class JobSchedule(BackgroundTasks):
 
     @property
     def logger(self):
-        return self.__logger__
+        return JobSchedule.__logger__
 
     @logger.setter
     def logger(self, value):
@@ -410,7 +428,7 @@ class JobSchedule(BackgroundTasks):
 
     @property
     def redis(self):
-        return self.__redis__
+        return JobSchedule.__redis__
 
     @redis.setter
     def redis(self, value):
@@ -452,4 +470,4 @@ class JobSchedule(BackgroundTasks):
 # Create a Schedule object
 schedule: typing.Union[AsyncIOScheduler, JobSchedule] = JobSchedule()
 # Only instantiation objects are allowed to be exported
-__all__ = ["schedule", "JobSchedule"]
+__all__ = ["schedule", "JobSchedule", "fast_job_api_router"]

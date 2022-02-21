@@ -3,11 +3,9 @@
 # Copyright (c) 2021
 # author: Euraxluo
 
-import enum
 import typing
 from fastapi.dependencies.utils import *
 from fastapi.routing import *
-from fast_job.job_schedule import JobSchedule
 
 
 def get_typed_annotation(param: inspect.Parameter, globalns: typing.Dict[str, typing.Any]) -> typing.Any:
@@ -307,22 +305,4 @@ class TaskAPIRouter(APIRouter):
         self.routes.append(route)
 
 
-task_api_router = TaskAPIRouter()
-
-
-def task_api_router_init():
-    for idx, (task_id, task_message) in enumerate(JobSchedule.__task_manage__.items()):
-        task_api_router.add_task_api_route(path="/" + task_id,
-                                           endpoint=task_message['wrap'],
-                                           endpoint_params=task_message['params'],
-                                           methods=["POST"],
-                                           name=task_id,
-                                           summary=task_message["summer"])
-    from fast_job.job_api import fast_job_api_router
-    from fast_job.schema import Response
-
-    @fast_job_api_router.get("/tasks", response_model=Response, summary="all load tasks")
-    def tasks():
-        return Response(data=JobSchedule.__task_manage__)
-
-    return task_api_router
+__all__ = ["TaskAPIRouter"]

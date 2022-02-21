@@ -14,10 +14,10 @@ from apscheduler.triggers.date import DateTrigger
 from apscheduler.triggers import base as BaseTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 
+from fast_job.job_schedule import schedule, JobSchedule, fast_job_api_router
 from fast_job.schema import Response, SchedulesBase, TaskWorkRecord, Job, ExceptionCode, SuccessMessage
-from fast_job.job_schedule import schedule,JobSchedule
 
-fast_job_api_router = APIRouter(prefix="/schedule")
+job_api_prefix = "/schedule"
 
 
 class SecondsCronTrigger(CronTrigger):
@@ -32,7 +32,7 @@ class SecondsCronTrigger(CronTrigger):
 
 
 # interval Fixed interval scheduling
-@fast_job_api_router.post("/interval", response_model=Response, summary="Interval a periodic schedule that runs in a cycle")
+@fast_job_api_router.post(job_api_prefix + "/interval", response_model=Response, summary="Interval a periodic schedule that runs in a cycle")
 async def interval(
         job_id: str = Body(..., description="job_id"),
         task_id: str = Body(..., description="task_id"),
@@ -60,7 +60,7 @@ async def interval(
 
 
 # date Run only once at a particular point in time
-@fast_job_api_router.post("/datetime", response_model=Response, summary="Scheduled scheduling that runs at a specified point in time")
+@fast_job_api_router.post(job_api_prefix + "/datetime", response_model=Response, summary="Scheduled scheduling that runs at a specified point in time")
 async def datetimer(
         job_id: str = Body(..., description="job_id"),
         task_id: str = Body(..., description="task_id"),
@@ -86,7 +86,7 @@ async def datetimer(
 
 
 # cron More flexible scheduled tasks can use the crontab expression
-@fast_job_api_router.post("/cron", response_model=Response, summary="Scheduled scheduling using crontab expression")
+@fast_job_api_router.post(job_api_prefix + "/cron", response_model=Response, summary="Scheduled scheduling using crontab expression")
 async def cron(
         job_id: str = Body(..., description="job_id"),
         task_id: str = Body(..., description="task_id"),
@@ -112,7 +112,7 @@ async def cron(
     return Response(message=SuccessMessage.JobSetCronSuccess.value, data={"job": Job(job)})
 
 
-@fast_job_api_router.get("/scheduling", response_model=Response, summary="Get information about all scheduling jobs")
+@fast_job_api_router.get(job_api_prefix + "/scheduling", response_model=Response, summary="Get information about all scheduling jobs")
 async def scheduling(tag: str = 'default'):
     all_schedule: typing.List[SchedulesBase] = []
     for job in schedule.get_jobs():
@@ -124,32 +124,32 @@ async def scheduling(tag: str = 'default'):
     return Response(message=SuccessMessage.JobGetAllSuccess.value, data={"schedules": all_schedule})
 
 
-@fast_job_api_router.get("/get", response_model=Response, summary="Get information about the specified job")
-async def get(
+@fast_job_api_router.get(job_api_prefix + "/job", response_model=Response, summary="Get information about the specified job")
+async def job_info(
         job_id: str = Query(None, description="任务id"),
         tag: str = 'default'):
     schedule.logger.info({"Get information about the specified job": {"tag": tag, "job_id": job_id}})
     job = schedule.get_job(job_id=schedule.job_key(job_id=job_id, tag=tag))
     if job:
         return Response(message=SuccessMessage.JobGetSuccess.value, data=SchedulesBase(tag=tag, job_id=job.id, func_name=job.func_ref, func_args=job.args, cron_model=str(job.trigger), next_run_time=job.next_run_time).dict())
-    return Response(code=ExceptionCode.ScheduleNotFoundFailed.value, message=f"not found job {job_id}")
+    return Response(code=ExceptionCode.ScheduleNotFoundFailed.value, message=f"not found job {job_id},tag {tag},job_key {schedule.job_key(job_id=job_id, tag=tag)}")
 
 
-@fast_job_api_router.post("/remove/{job_id}", response_model=Response, summary="Remove a task based on the job ID")
+@fast_job_api_router.post(job_api_prefix + "/remove/{job_id}", response_model=Response, summary="Remove a task based on the job ID")
 async def remove(
         job_id: str = Path(..., description="job_id"),
         tag: str = 'default'):
     schedule.logger.info({"Remove a task based on the job ID": {"tag": tag, "job_id": job_id}})
-    schedule.remove_work_rdb(job_id=job_id, tag=tag)
+    remove_work_rdb_resp = schedule.remove_work_rdb(job_id=job_id, tag=tag)
     job = schedule.get_job(job_id=schedule.job_key(job_id=job_id, tag=tag))
     if not job:
-        return Response(code=ExceptionCode.ScheduleNotFoundFailed.value, message=f"not found job {job_id}")
+        return Response(code=ExceptionCode.ScheduleNotFoundFailed.value, message=f"not found job {job_id},work_log {remove_work_rdb_resp}")
 
     schedule.remove_job(schedule.job_key(job_id=job_id, tag=tag))
-    return Response(message=SuccessMessage.JobRemoveSuccess.value, data={"job": Job(job)})
+    return Response(message=SuccessMessage.JobRemoveSuccess.value, data={"job": Job(job), "work_log": remove_work_rdb_resp})
 
 
-@fast_job_api_router.post("/pause/{job_id}", response_model=Response, summary="Pause a job by job ID")
+@fast_job_api_router.post(job_api_prefix + "/pause/{job_id}", response_model=Response, summary="Pause a job by job ID")
 async def pause(
         job_id: str = Path(..., description="job_id"),
         tag: str = 'default'):
@@ -161,7 +161,7 @@ async def pause(
     return Response(message=SuccessMessage.JobPauseSuccess.value, data={"job": Job(job)})
 
 
-@fast_job_api_router.post("/resume/{job_id}", response_model=Response, summary="Resume a job by job ID")
+@fast_job_api_router.post(job_api_prefix + "/resume/{job_id}", response_model=Response, summary="Resume a job by job ID")
 async def resume(
         job_id: str = Path(..., description="job_id"),
         tag: str = 'default'):
@@ -173,11 +173,11 @@ async def resume(
     return Response(message=SuccessMessage.JobResumeSuccess.value, data={"job": Job(job)})
 
 
-@fast_job_api_router.post("/modify", response_model=Response, summary="Modify a task based on the job ID")
+@fast_job_api_router.post(job_api_prefix + "/modify", response_model=Response, summary="Modify a task based on the job ID")
 async def modify(
         job_id: str = Body("", description="job_id"),
         task_id: typing.Optional[str] = Body("", description="task_id"),
-        trigger: typing.Optional[str] = Body("interval", description="(e.g. 'date', `interval` or `cron`)"),
+        trigger: typing.Optional[str] = Body("interval", description="(e.g. `date`, `interval` or `cron`)"),
         run_time: typing.Union[str, datetime] = Body(datetime.now(), description="Expected first run time"),
         crontab: str = Body('*/10 * 8-20 * * * *', description="crontab expression"),
         seconds: int = Body(120, description="Cycle mode interval, unit / second, default 120S"),
@@ -210,7 +210,7 @@ async def modify(
     return Response(message=SuccessMessage.JobModifySuccess.value, data={"job": Job(job)})
 
 
-@fast_job_api_router.get("/log", response_model=Response, summary="Get execution records corresponding to the job ID")
+@fast_job_api_router.get(job_api_prefix + "/log", response_model=Response, summary="Get execution records corresponding to the job ID")
 async def log(
         job_id: str = Query(..., description="job_id"),
         start: int = Query(0, description="Start index, starting at 0, default 0"),
@@ -225,7 +225,7 @@ async def log(
     return Response(data={"log": work_records})
 
 
-@fast_job_api_router.post("/retry", response_model=Response, summary="Retry execution records based on the job ID and other parameters")
+@fast_job_api_router.post(job_api_prefix + "/retry", response_model=Response, summary="Retry execution records based on the job ID and other parameters")
 async def retry(work: TaskWorkRecord = Body(..., description="Execute record structure")):
     schedule.logger.info({"Retry execution records based on the job ID and other parameters": {"work": work.dict()}})
     try:
@@ -235,4 +235,6 @@ async def retry(work: TaskWorkRecord = Body(..., description="Execute record str
     return Response(message=SuccessMessage.JobRetrySuccess.value, data={"result": result})
 
 
-__all__ = ["fast_job_api_router"]
+@fast_job_api_router.get(job_api_prefix + "/tasks", response_model=Response, summary="all load tasks")
+async def tasks():
+    return Response(data=schedule.__task_manage__)
