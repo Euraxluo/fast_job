@@ -5,6 +5,6 @@
 
 from fast_job.job_api import schedule, fast_job_api_router
 
-__version__ = "0.1.8"
+__version__ = "0.1.9"
 __description__ = """Provides scheduling apis and scheduling and task-related services"""
 __all__ = ["fast_job_api_router", "schedule"]
