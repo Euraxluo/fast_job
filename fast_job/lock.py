@@ -47,7 +47,8 @@ def _script_load(script):
             # 加载并缓存校验和
             if not sha[0]:
                 sha[0] = conn.execute_command("SCRIPT", "LOAD", script, parse="LOAD")
-
+                if isinstance(conn, redis.client.Pipeline):
+                    sha[0] = conn.execute()[0]
             try:
                 return conn.execute_command("EVALSHA", sha[0], len(keys), *(keys + args))
             except redis.exceptions.ResponseError as msg:

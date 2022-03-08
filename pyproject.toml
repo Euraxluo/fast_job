@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fast_job"
-version = "0.1.9"
+version = "0.1.10"
 description = "a distributed scheduled task scheduling component written for fast-api"
 authors = ["Euraxluo <euraxluo@qq.com>"]
 license = "The MIT LICENSE"
