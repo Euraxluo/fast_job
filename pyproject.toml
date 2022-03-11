@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fast_job"
-version = "0.1.10"
+version = "0.1.11"
 description = "a distributed scheduled task scheduling component written for fast-api"
 authors = ["Euraxluo <euraxluo@qq.com>"]
 license = "The MIT LICENSE"
@@ -12,7 +12,7 @@ repository = "https://github.com/Euraxluo/fast_job"
 python = "^3.6"
 redis = "^4.1.4"
 APScheduler = "^3.8.1"
-fastapi = "^0.74.1"
+fastapi = ">=0.74.1"
 
 [tool.poetry.dev-dependencies]
 
