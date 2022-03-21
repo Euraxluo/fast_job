@@ -38,7 +38,7 @@ class _WatchThread(threading.Thread):
 def _script_load(script):
     sha = [None]
 
-    def call(conn: Redis, keys=None, args=None, force_eval=False):
+    def call(conn: typing.Union[redis.client.Pipeline, redis.client.Redis], keys=None, args=None, force_eval=False):
         if args is None:
             args = []
         if keys is None:
@@ -48,7 +48,7 @@ def _script_load(script):
             if not sha[0]:
                 sha[0] = conn.execute_command("SCRIPT", "LOAD", script, parse="LOAD")
                 if isinstance(conn, redis.client.Pipeline):
-                    sha[0] = conn.execute()[0]
+                    sha[0] = conn.execute()[-1]
             try:
                 return conn.execute_command("EVALSHA", sha[0], len(keys), *(keys + args))
             except redis.exceptions.ResponseError as msg:
