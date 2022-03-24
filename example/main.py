@@ -6,10 +6,10 @@ import unittest
 from loguru import logger
 import logging
 
-import HTMLReport.src.tools.result as test_result
-import HTMLReport.src.test_runner as test_runner
+import HTMLReport.src.tools.result as test_result  # type:ignore
+import HTMLReport.src.test_runner as test_runner  # type:ignore
 
-logger.getLogger = logging.getLogger
+logger.getLogger = logging.getLogger  # type:ignore
 test_result.logging = logger
 test_runner.logging = logger
 
@@ -36,6 +36,6 @@ class Test(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    import uvicorn
+    import uvicorn  # type:ignore
 
     uvicorn.run("test_job_api:app")

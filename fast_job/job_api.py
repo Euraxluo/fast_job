@@ -8,11 +8,11 @@ from datetime import datetime
 import typing
 from fastapi import APIRouter, Query, Body, Path
 
-import apscheduler.util
-from apscheduler.triggers.cron import CronTrigger
-from apscheduler.triggers.date import DateTrigger
-from apscheduler.triggers import base as BaseTrigger
-from apscheduler.triggers.interval import IntervalTrigger
+import apscheduler.util  # type:ignore
+from apscheduler.triggers.cron import CronTrigger  # type:ignore
+from apscheduler.triggers.date import DateTrigger  # type:ignore
+from apscheduler.triggers import base as BaseTrigger  # type:ignore
+from apscheduler.triggers.interval import IntervalTrigger  # type:ignore
 
 from fast_job.job_schedule import schedule, JobSchedule, fast_job_api_router
 from fast_job.schema import Response, SchedulesBase, TaskWorkRecord, Job, ExceptionCode, SuccessMessage

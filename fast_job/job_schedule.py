@@ -7,15 +7,18 @@ import json
 import time
 import uuid
 import typing
+import logging
 import contextlib
 import traceback
+from redis import Redis  # type:ignore
+from typing import *
 from functools import wraps
 from fastapi import BackgroundTasks, APIRouter
 from starlette.background import BackgroundTask
 from threading import Thread
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
-from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
-from apscheduler.jobstores.redis import RedisJobStore
+from apscheduler.schedulers.asyncio import AsyncIOScheduler  # type:ignore
+from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore  # type:ignore
+from apscheduler.jobstores.redis import RedisJobStore  # type:ignore
 
 from fast_job.lock import *
 from fast_job.schema import TaskWorkRecord, Response
@@ -25,12 +28,12 @@ fast_job_api_router = APIRouter()
 
 
 class JobSchedule(BackgroundTasks):
-    __task_manage__ = {}  # task 管理器
+    __task_manage__: Dict[str, Dict] = {}  # task 管理器
     __schedule__ = None  # 调度器
 
-    __redis__ = None  # Redis存储器
-    __logger__ = None  # 日志管理器
-    __redis_job_store__ = None  # Redis 调度存储器
+    __redis__: Redis = None  # Redis存储器
+    __logger__: logging.Logger = logging.getLogger("fast_job.JobSchedule")  # 日志管理器
+    __redis_job_store__: RedisJobStore = None  # Redis 调度存储器
 
     __distributed_id__ = str(uuid.uuid1())  # 分布式id
 

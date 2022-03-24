@@ -3,7 +3,7 @@
 # Copyright (c) 2022
 # author: Euraxluo
 
-import redis
+import redis  # type:ignore
 import time
 import math
 import threading
@@ -192,7 +192,6 @@ def acquire_re_entrant_lock_with_timeout(conn: Redis, lock_name: str, identifier
     end = time.time() + acquire_timeout if acquire_timeout > 0 else float('inf')
 
     acquired = False
-    identifier: str = identifier
     lock_name = lock_name
     lock_timeout = int(math.ceil(lock_timeout))
 

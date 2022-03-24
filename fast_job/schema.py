@@ -6,7 +6,7 @@
 import datetime
 from typing import List, Any, Mapping, Optional, Tuple
 from pydantic import BaseModel
-from apscheduler.job import Job as scheduleJob
+from apscheduler.job import Job as scheduleJob  # type:ignore
 
 from enum import Enum
 

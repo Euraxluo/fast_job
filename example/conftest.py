@@ -4,7 +4,7 @@
 # author: Euraxluo
 
 
-import redis
+import redis  # type:ignore
 import json
 from typing import Union, Callable
 

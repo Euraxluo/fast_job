@@ -8,7 +8,7 @@ import ipaddress
 from socket import gethostbyname, gethostname
 from threading import Lock
 from time import sleep
-from typing import Callable, Dict, Optional
+from typing import Callable, Dict, Optional, Union
 
 BIT_LEN_TIME = 39
 BIT_LEN_SEQUENCE = 8
@@ -21,7 +21,7 @@ def lower_16bit_private_ip() -> int:
     """
     Returns the lower 16 bits of the private IP address.
     """
-    ip: ipaddress.IPv4Address = ipaddress.ip_address(gethostbyname(gethostname()))
+    ip: Union[ipaddress.IPv4Address, ipaddress.IPv6Address] = ipaddress.ip_address(gethostbyname(gethostname()))
     ip_bytes = ip.packed
     return (ip_bytes[2] << 8) + ip_bytes[3]
 
@@ -35,10 +35,10 @@ class SonyFlake:
     _machine_id: int
 
     def __new__(
-        cls,
-        start_time: Optional[datetime.datetime] = None,
-        machine_id: Optional[Callable[[], int]] = None,
-        check_machine_id: Optional[Callable[[int], bool]] = None,
+            cls,
+            start_time: Optional[datetime.datetime] = None,
+            machine_id: Optional[Callable[[], int]] = None,
+            check_machine_id: Optional[Callable[[int], bool]] = None,
     ):
         if start_time and datetime.datetime.now(UTC) < start_time:
             return None
@@ -53,10 +53,10 @@ class SonyFlake:
         return instance
 
     def __init__(
-        self,
-        start_time: Optional[datetime.datetime] = None,
-        machine_id: Optional[Callable[[], int]] = None,
-        check_machine_id: Optional[Callable[[int], bool]] = None,
+            self,
+            start_time: Optional[datetime.datetime] = None,
+            machine_id: Optional[Callable[[], int]] = None,
+            check_machine_id: Optional[Callable[[int], bool]] = None,
     ) -> None:
         """
         Create a new instance of `SonyFlake` unique ID generator.
@@ -157,8 +157,8 @@ class SonyFlake:
         Calculate the time remaining until generation of new ID.
         """
         return (
-            duration * 10 - (datetime.datetime.now(UTC).timestamp() * 100) % 1
-        ) / 100
+                       duration * 10 - (datetime.datetime.now(UTC).timestamp() * 100) % 1
+               ) / 100
 
     @staticmethod
     def decompose(_id: int) -> Dict[str, int]:
