@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="fast-job test report" errors="0" failures="0" tests="16" skipped="0" time="243.733913" >
+    <testsuite name="example.test_job_api.Test" id="0" errors="0" skipped="0" tests="15" failures="0" time="243.22010588645935">
+        <testcase name="test_app" classname="example.test_job_api.Test.test_app" time="0.023000240325927734">
+        </testcase>
+        <testcase name="test_cron" classname="example.test_job_api.Test.test_cron" time="179.84898591041565">
+        </testcase>
+        <testcase name="test_datetime" classname="example.test_job_api.Test.test_datetime" time="14.307842254638672">
+        </testcase>
+        <testcase name="test_event" classname="example.test_job_api.Test.test_event" time="0.6629703044891357">
+        </testcase>
+        <testcase name="test_interval" classname="example.test_job_api.Test.test_interval" time="11.38850212097168">
+        </testcase>
+        <testcase name="test_log" classname="example.test_job_api.Test.test_log" time="3.8517041206359863">
+        </testcase>
+        <testcase name="test_modify" classname="example.test_job_api.Test.test_modify" time="11.341229677200317">
+        </testcase>
+        <testcase name="test_pause" classname="example.test_job_api.Test.test_pause" time="13.207195281982422">
+        </testcase>
+        <testcase name="test_remove" classname="example.test_job_api.Test.test_remove" time="2.870408773422241">
+        </testcase>
+        <testcase name="test_resume" classname="example.test_job_api.Test.test_resume" time="1.0879631042480469">
+        </testcase>
+        <testcase name="test_retry" classname="example.test_job_api.Test.test_retry" time="1.1374077796936035">
+        </testcase>
+        <testcase name="test_scheduling" classname="example.test_job_api.Test.test_scheduling" time="1.419511318206787">
+        </testcase>
+        <testcase name="test_task1" classname="example.test_job_api.Test.test_task1" time="0.6287591457366943">
+        </testcase>
+        <testcase name="test_task2" classname="example.test_job_api.Test.test_task2" time="0.7693996429443359">
+        </testcase>
+        <testcase name="test_tasks" classname="example.test_job_api.Test.test_tasks" time="0.6752262115478516">
+        </testcase>
+    </testsuite>
+    <testsuite name="example.test_job_schedule.TestJobSchedule" id="1" errors="0" skipped="0" tests="1" failures="0" time="0.28847670555114746">
+        <testcase name="test_setup" classname="example.test_job_schedule.TestJobSchedule.test_setup" time="0.28847670555114746">
+        </testcase>
+    </testsuite>
+</testsuites>

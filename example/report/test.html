@@ -4,7 +4,7 @@
 
 <head>
     <title>fast-job test report</title>
-    <meta name="generator" content="HTMLReport 刘士 2.2.4"/>
+    <meta name="generator" content="HTMLReport 刘士 2.3.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css" media="screen">
 body {
@@ -665,19 +665,19 @@ goChart(chartData_en);
     <strong>
       <span class="lang-cn">启动时间：</span>
       <span class="lang-en">Start Time:</span>
-    </strong> 2022-03-24 19:24:37
+    </strong> 2022-04-11 10:51:50
   </p>
   <p class='attribute'>
     <strong>
       <span class="lang-cn">结束时间：</span>
       <span class="lang-en">End Time:</span>
-    </strong> 2022-03-24 19:26:14
+    </strong> 2022-04-11 10:55:54
   </p>
   <p class='attribute'>
     <strong>
       <span class="lang-cn">运行时长：</span>
       <span class="lang-en">Duration:</span>
-    </strong> 0:01:37.220394
+    </strong> 0:04:03.733913
   </p>
   <p class='attribute'>
     <strong>
@@ -845,6 +845,35 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.2.1:
+2022-04-11 10:52:27,093   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:53:16,611   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_1
+2022-04-11 10:53:16,719   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:52:32 CST)" (scheduled at 2022-04-11 10:52:24+08:00)
+2022-04-11 10:53:16,860   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:52:35 CST)" (scheduled at 2022-04-11 10:52:25.765510+08:00)
+2022-04-11 10:53:16,938   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:50:12 CST], next run at: 2022-04-11 10:50:12 CST)" (scheduled at 2022-04-11 10:50:12+08:00)
+2022-04-11 10:53:17,440   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:52:32 CST)" executed successfully
+2022-04-11 10:53:17,580   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:52:35 CST)" executed successfully
+2022-04-11 10:53:17,704   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:50:12 CST], next run at: 2022-04-11 10:50:12 CST)" executed successfully
+2022-04-11 10:53:18,171   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:03,559   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:53:24 CST)" (scheduled at 2022-04-11 10:53:16+08:00)
+2022-04-11 10:54:03,701   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:53:24 CST)" (scheduled at 2022-04-11 10:53:16+08:00)
+2022-04-11 10:54:03,813   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:53:25 CST)" (scheduled at 2022-04-11 10:53:15.765510+08:00)
+2022-04-11 10:54:04,223   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:53:24 CST)" executed successfully
+2022-04-11 10:54:04,331   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:53:24 CST)" executed successfully
+2022-04-11 10:54:04,475   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:53:25 CST)" executed successfully
+2022-04-11 10:54:04,633   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:48,414   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" (scheduled at 2022-04-11 10:54:00+08:00)
+2022-04-11 10:54:48,509   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" (scheduled at 2022-04-11 10:54:00+08:00)
+2022-04-11 10:54:48,588   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" (scheduled at 2022-04-11 10:54:00+08:00)
+2022-04-11 10:54:48,668   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:54:05 CST)" (scheduled at 2022-04-11 10:53:55.765510+08:00)
+2022-04-11 10:54:49,393   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" executed successfully
+2022-04-11 10:54:49,473   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" executed successfully
+2022-04-11 10:54:49,584   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:08 CST)" executed successfully
+2022-04-11 10:54:49,679   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:54:05 CST)" executed successfully
+2022-04-11 10:54:49,851   11568     INFO base.py(203) - Scheduler has been shut down
+2022-04-11 10:54:50,479   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:54:55 CST)" (scheduled at 2022-04-11 10:54:45.765510+08:00)
+2022-04-11 10:54:50,542   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" (scheduled at 2022-04-11 10:54:48+08:00)
+2022-04-11 10:54:50,574   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" (scheduled at 2022-04-11 10:54:48+08:00)
+2022-04-11 10:54:50,654   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" (scheduled at 2022-04-11 10:54:48+08:00)
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -873,6 +902,168 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.3.1:
+2022-04-11 10:54:50,923   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:54:51,650   11568    ERROR base_events.py(1744) - Task was destroyed but it is pending!
+task: &lt;Task pending name='Task-21' coro=&lt;run_coroutine_job() running at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py:30&gt; wait_for=&lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at C:\ProgramData\Anaconda3\envs\fast_job\lib\asyncio\futures.py:384, Task.task_wakeup()]&gt; cb=[AsyncIOExecutor._do_submit_job.&lt;locals&gt;.callback() at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py:39]&gt;
+2022-04-11 10:54:51,696   11568    ERROR base_events.py(1744) - Task was destroyed but it is pending!
+task: &lt;Task pending name='Task-22' coro=&lt;run_coroutine_job() running at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py:30&gt; wait_for=&lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at C:\ProgramData\Anaconda3\envs\fast_job\lib\asyncio\futures.py:384, Task.task_wakeup()]&gt; cb=[AsyncIOExecutor._do_submit_job.&lt;locals&gt;.callback() at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py:39]&gt;
+2022-04-11 10:54:51,742   11568    ERROR base_events.py(1744) - Task was destroyed but it is pending!
+task: &lt;Task pending name='Task-23' coro=&lt;run_coroutine_job() running at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py:30&gt; wait_for=&lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at C:\ProgramData\Anaconda3\envs\fast_job\lib\asyncio\futures.py:384, Task.task_wakeup()]&gt; cb=[AsyncIOExecutor._do_submit_job.&lt;locals&gt;.callback() at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py:39]&gt;
+2022-04-11 10:54:51,806   11568    ERROR base_events.py(1744) - Task was destroyed but it is pending!
+task: &lt;Task pending name='Task-24' coro=&lt;run_coroutine_job() running at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py:30&gt; wait_for=&lt;Future pending cb=[_chain_future.&lt;locals&gt;._call_check_cancel() at C:\ProgramData\Anaconda3\envs\fast_job\lib\asyncio\futures.py:384, Task.task_wakeup()]&gt; cb=[AsyncIOExecutor._do_submit_job.&lt;locals&gt;.callback() at C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py:39]&gt;
+2022-04-11 10:54:51,917   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:54:55 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\schedulers\base.py", line 901, in _create_plugin_instance
+    plugin_cls = class_container[alias]
+KeyError: 'date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 3031, in _dep_map
+    return self.__dep_map
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 2828, in __getattr__
+    raise AttributeError(attr)
+AttributeError: _DistInfoDistribution__dep_map
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+GeneratorExit
+2022-04-11 10:54:52,165   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\schedulers\base.py", line 901, in _create_plugin_instance
+    plugin_cls = class_container[alias]
+KeyError: 'date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 3031, in _dep_map
+    return self.__dep_map
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 2828, in __getattr__
+    raise AttributeError(attr)
+AttributeError: _DistInfoDistribution__dep_map
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+GeneratorExit
+2022-04-11 10:54:52,276   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\schedulers\base.py", line 901, in _create_plugin_instance
+    plugin_cls = class_container[alias]
+KeyError: 'date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 3031, in _dep_map
+    return self.__dep_map
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 2828, in __getattr__
+    raise AttributeError(attr)
+AttributeError: _DistInfoDistribution__dep_map
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+GeneratorExit
+2022-04-11 10:54:52,402   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:54:56 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\schedulers\base.py", line 901, in _create_plugin_instance
+    plugin_cls = class_container[alias]
+KeyError: 'date'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 3031, in _dep_map
+    return self.__dep_map
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\pkg_resources\__init__.py", line 2828, in __getattr__
+    raise AttributeError(attr)
+AttributeError: _DistInfoDistribution__dep_map
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+GeneratorExit
+2022-04-11 10:54:53,020   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:53,380   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_1
+2022-04-11 10:54:53,445   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:51 CST], next run at: 2022-04-11 10:54:51 CST)" (scheduled at 2022-04-11 10:54:51+08:00)
+2022-04-11 10:54:53,664   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:53,960   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_1
+2022-04-11 10:54:54,149   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:51 CST], next run at: 2022-04-11 10:54:51 CST)" executed successfully
+2022-04-11 10:54:54,180   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" (scheduled at 2022-04-11 10:54:53+08:00)
+2022-04-11 10:54:54,530   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" executed successfully
+2022-04-11 10:54:54,765   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:55,129   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_2
+2022-04-11 10:54:55,317   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:54 CST], next run at: 2022-04-11 10:54:54 CST)" (scheduled at 2022-04-11 10:54:54+08:00)
+2022-04-11 10:54:55,568   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:55,805   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_2
+2022-04-11 10:54:56,058   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:54 CST], next run at: 2022-04-11 10:54:54 CST)" executed successfully
+2022-04-11 10:54:56,121   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" (scheduled at 2022-04-11 10:54:53+08:00)
+2022-04-11 10:54:56,422   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" executed successfully
+2022-04-11 10:54:57,001   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:57,078   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:05 CST)" (scheduled at 2022-04-11 10:54:55.765510+08:00)
+2022-04-11 10:54:57,204   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" (scheduled at 2022-04-11 10:54:56+08:00)
+2022-04-11 10:54:57,347   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" (scheduled at 2022-04-11 10:54:56+08:00)
+2022-04-11 10:54:57,379   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" (scheduled at 2022-04-11 10:54:56+08:00)
+2022-04-11 10:54:57,628   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_3
+2022-04-11 10:54:57,833   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:56 CST], next run at: 2022-04-11 10:54:56 CST)" (scheduled at 2022-04-11 10:54:56+08:00)
+2022-04-11 10:54:57,959   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:54:58,038   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:05 CST)" executed successfully
+2022-04-11 10:54:58,149   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" executed successfully
+2022-04-11 10:54:58,292   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" executed successfully
+2022-04-11 10:54:58,451   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:00 CST)" executed successfully
+2022-04-11 10:54:58,704   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_datetime:job.test_task_3
+2022-04-11 10:54:58,926   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:56 CST], next run at: 2022-04-11 10:54:56 CST)" executed successfully
+2022-04-11 10:54:58,958   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" (scheduled at 2022-04-11 10:54:53+08:00)
+2022-04-11 10:55:04,186   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: date[2022-04-11 10:54:53 CST], next run at: 2022-04-11 10:54:53 CST)" executed successfully
+2022-04-11 10:55:04,693   11568     INFO base.py(203) - Scheduler has been shut down
+2022-04-11 10:55:04,741   11568    ERROR base.py(100) - Error running job test:job_schedule:tag.test_cron:job.test_task_1
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 13, in run_coroutine_job
+    async def run_coroutine_job(job, jobstore_alias, run_times, logger_name):
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py", line 42, in callback
+    events = f.result()
+asyncio.exceptions.CancelledError
+2022-04-11 10:55:04,897   11568    ERROR base.py(100) - Error running job test:job_schedule:tag.test_cron:job.test_task_2
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 13, in run_coroutine_job
+    async def run_coroutine_job(job, jobstore_alias, run_times, logger_name):
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py", line 42, in callback
+    events = f.result()
+asyncio.exceptions.CancelledError
+2022-04-11 10:55:04,977   11568    ERROR base.py(100) - Error running job test:job_schedule:tag.test_cron:job.test_task_3
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 13, in run_coroutine_job
+    async def run_coroutine_job(job, jobstore_alias, run_times, logger_name):
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\asyncio.py", line 42, in callback
+    events = f.result()
+asyncio.exceptions.CancelledError
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -901,6 +1092,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.4.1:
+2022-04-11 10:55:05,278   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:05,688   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -929,6 +1122,22 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.5.1:
+2022-04-11 10:55:05,910   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:06,409   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" (scheduled at 2022-04-11 10:55:05.765510+08:00)
+2022-04-11 10:55:06,709   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" executed successfully
+2022-04-11 10:55:07,248   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:55:11,198   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" (scheduled at 2022-04-11 10:55:05.765510+08:00)
+2022-04-11 10:55:11,516   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" executed successfully
+2022-04-11 10:55:11,753   11568     INFO base.py(886) - Added job "JobSchedule.task_scheduler" to job store "default"
+2022-04-11 10:55:15,953   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" (scheduled at 2022-04-11 10:55:05.765510+08:00)
+2022-04-11 10:55:16,048   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" (scheduled at 2022-04-11 10:55:08+08:00)
+2022-04-11 10:55:16,128   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" (scheduled at 2022-04-11 10:55:08+08:00)
+2022-04-11 10:55:16,255   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" (scheduled at 2022-04-11 10:55:08+08:00)
+2022-04-11 10:55:16,556   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:15 CST)" executed successfully
+2022-04-11 10:55:16,683   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" executed successfully
+2022-04-11 10:55:16,746   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" executed successfully
+2022-04-11 10:55:16,921   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:16 CST)" executed successfully
+2022-04-11 10:55:17,017   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -957,6 +1166,20 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.6.1:
+2022-04-11 10:55:17,316   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:17,897   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" (scheduled at 2022-04-11 10:55:15.765510+08:00)
+2022-04-11 10:55:18,055   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" (scheduled at 2022-04-11 10:55:15.765510+08:00)
+2022-04-11 10:55:18,134   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" (scheduled at 2022-04-11 10:55:15.765510+08:00)
+2022-04-11 10:55:18,228   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" (scheduled at 2022-04-11 10:55:16+08:00)
+2022-04-11 10:55:18,292   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" (scheduled at 2022-04-11 10:55:16+08:00)
+2022-04-11 10:55:18,419   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" (scheduled at 2022-04-11 10:55:16+08:00)
+2022-04-11 10:55:18,622   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" executed successfully
+2022-04-11 10:55:18,685   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" executed successfully
+2022-04-11 10:55:18,888   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:25 CST)" executed successfully
+2022-04-11 10:55:18,935   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" executed successfully
+2022-04-11 10:55:19,027   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" executed successfully
+2022-04-11 10:55:19,232   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/8'], next run at: 2022-04-11 10:55:24 CST)" executed successfully
+2022-04-11 10:55:20,881   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -985,6 +1208,53 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.7.1:
+2022-04-11 10:55:21,182   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:25,809   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:26 CST)" (scheduled at 2022-04-11 10:55:25+08:00)
+2022-04-11 10:55:26,596   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:35 CST)" (scheduled at 2022-04-11 10:55:25.765510+08:00)
+2022-04-11 10:55:26,706   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:29 CST)" (scheduled at 2022-04-11 10:55:25.814238+08:00)
+2022-04-11 10:55:26,754   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:27 CST)" (scheduled at 2022-04-11 10:55:26+08:00)
+2022-04-11 10:55:26,849   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:27 CST)" (scheduled at 2022-04-11 10:55:26+08:00)
+2022-04-11 10:55:27,214   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:26 CST)" executed successfully
+2022-04-11 10:55:27,358   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:10], next run at: 2022-04-11 10:55:35 CST)" executed successfully
+2022-04-11 10:55:27,469   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:29 CST)" executed successfully
+2022-04-11 10:55:27,531   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:27 CST)" executed successfully
+2022-04-11 10:55:27,687   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:27 CST)" executed successfully
+2022-04-11 10:55:28,461   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:30 CST)" (scheduled at 2022-04-11 10:55:26.443702+08:00)
+2022-04-11 10:55:28,555   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:28 CST)" (scheduled at 2022-04-11 10:55:27+08:00)
+2022-04-11 10:55:28,603   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:28 CST)" (scheduled at 2022-04-11 10:55:27+08:00)
+2022-04-11 10:55:28,618   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:31 CST)" (scheduled at 2022-04-11 10:55:27.208864+08:00)
+2022-04-11 10:55:29,056   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:29 CST)" (scheduled at 2022-04-11 10:55:28+08:00)
+2022-04-11 10:55:29,103   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:29 CST)" (scheduled at 2022-04-11 10:55:28+08:00)
+2022-04-11 10:55:29,325   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:30 CST)" executed successfully
+2022-04-11 10:55:29,405   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:28 CST)" executed successfully
+2022-04-11 10:55:29,564   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:28 CST)" executed successfully
+2022-04-11 10:55:29,627   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:31 CST)" executed successfully
+2022-04-11 10:55:30,114   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:29 CST)" executed successfully
+2022-04-11 10:55:30,255   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:29 CST)" executed successfully
+2022-04-11 10:55:30,287   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" (scheduled at 2022-04-11 10:55:29+08:00)
+2022-04-11 10:55:30,365   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" (scheduled at 2022-04-11 10:55:29+08:00)
+2022-04-11 10:55:30,476   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" (scheduled at 2022-04-11 10:55:29+08:00)
+2022-04-11 10:55:30,713   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" executed successfully
+2022-04-11 10:55:30,777   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" executed successfully
+2022-04-11 10:55:30,855   11568     INFO base.py(203) - Scheduler has been shut down
+2022-04-11 10:55:31,863   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:30 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "D:\Project\fast_job\fast_job\job_schedule.py", line 381, in task_scheduler
+    await self()
+  File "D:\Project\fast_job\fast_job\job_schedule.py", line 198, in __call__
+    await self.running_task()
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\starlette\background.py", line 20, in __call__
+    await run_in_threadpool(self.func, *self.args, **self.kwargs)
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\starlette\concurrency.py", line 40, in run_in_threadpool
+    return await loop.run_in_executor(None, func, *args)
+asyncio.exceptions.CancelledError
+2022-04-11 10:55:31,989   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:33 CST)" (scheduled at 2022-04-11 10:55:29.814238+08:00)
+2022-04-11 10:55:32,036   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:31 CST)" (scheduled at 2022-04-11 10:55:30+08:00)
+2022-04-11 10:55:32,100   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:31 CST)" (scheduled at 2022-04-11 10:55:30+08:00)
+2022-04-11 10:55:32,178   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:31 CST)" (scheduled at 2022-04-11 10:55:30+08:00)
+2022-04-11 10:55:32,240   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:34 CST)" (scheduled at 2022-04-11 10:55:30.443702+08:00)
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1013,6 +1283,74 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.8.1:
+2022-04-11 10:55:32,489   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:33,049   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" (scheduled at 2022-04-11 10:55:32+08:00)
+2022-04-11 10:55:33,142   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" (scheduled at 2022-04-11 10:55:32+08:00)
+2022-04-11 10:55:33,205   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" (scheduled at 2022-04-11 10:55:32+08:00)
+2022-04-11 10:55:33,251   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:35 CST)" (scheduled at 2022-04-11 10:55:31.208864+08:00)
+2022-04-11 10:55:33,467   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" executed successfully
+2022-04-11 10:55:33,577   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" executed successfully
+2022-04-11 10:55:33,766   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:33 CST)" executed successfully
+2022-04-11 10:55:33,813   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:35 CST)" executed successfully
+2022-04-11 10:55:34,587   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" (scheduled at 2022-04-11 10:55:33+08:00)
+2022-04-11 10:55:34,729   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" (scheduled at 2022-04-11 10:55:33+08:00)
+2022-04-11 10:55:34,872   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" (scheduled at 2022-04-11 10:55:33+08:00)
+2022-04-11 10:55:34,918   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:37 CST)" (scheduled at 2022-04-11 10:55:33.814238+08:00)
+2022-04-11 10:55:35,672   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" executed successfully
+2022-04-11 10:55:35,783   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" executed successfully
+2022-04-11 10:55:35,939   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:34 CST)" executed successfully
+2022-04-11 10:55:35,955   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" (scheduled at 2022-04-11 10:55:35+08:00)
+2022-04-11 10:55:36,019   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" (scheduled at 2022-04-11 10:55:35+08:00)
+2022-04-11 10:55:36,111   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" (scheduled at 2022-04-11 10:55:35+08:00)
+2022-04-11 10:55:36,253   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:38 CST)" (scheduled at 2022-04-11 10:55:34.443702+08:00)
+2022-04-11 10:55:36,489   11568    ERROR base_py3.py(36) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:38 CST)" raised an exception
+Traceback (most recent call last):
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\executors\base_py3.py", line 30, in run_coroutine_job
+    retval = await job.func(*job.args, **job.kwargs)
+  File "D:\Project\fast_job\fast_job\job_schedule.py", line 362, in task_scheduler
+    next_job_next_run_time = job.trigger.get_next_fire_time(current_job_next_run_time, current_job_next_run_time)
+  File "C:\ProgramData\Anaconda3\envs\fast_job\lib\site-packages\apscheduler\triggers\interval.py", line 55, in get_next_fire_time
+    elif self.start_date &gt; now:
+TypeError: '&gt;' not supported between instances of 'datetime.datetime' and 'NoneType'
+2022-04-11 10:55:36,676   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:37 CST)" executed successfully
+2022-04-11 10:55:37,530   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:39 CST)" (scheduled at 2022-04-11 10:55:35.208864+08:00)
+2022-04-11 10:55:37,607   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" (scheduled at 2022-04-11 10:55:36+08:00)
+2022-04-11 10:55:37,767   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" (scheduled at 2022-04-11 10:55:36+08:00)
+2022-04-11 10:55:37,908   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" (scheduled at 2022-04-11 10:55:36+08:00)
+2022-04-11 10:55:38,319   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" executed successfully
+2022-04-11 10:55:38,443   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" executed successfully
+2022-04-11 10:55:38,585   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:36 CST)" executed successfully
+2022-04-11 10:55:39,169   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:39 CST)" executed successfully
+2022-04-11 10:55:39,265   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" executed successfully
+2022-04-11 10:55:39,360   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" executed successfully
+2022-04-11 10:55:39,516   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:37 CST)" executed successfully
+2022-04-11 10:55:39,548   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" (scheduled at 2022-04-11 10:55:38+08:00)
+2022-04-11 10:55:39,596   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" (scheduled at 2022-04-11 10:55:38+08:00)
+2022-04-11 10:55:39,627   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" (scheduled at 2022-04-11 10:55:38+08:00)
+2022-04-11 10:55:39,706   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:41 CST)" (scheduled at 2022-04-11 10:55:37.814238+08:00)
+2022-04-11 10:55:40,633   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" executed successfully
+2022-04-11 10:55:40,728   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" executed successfully
+2022-04-11 10:55:40,982   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:39 CST)" executed successfully
+2022-04-11 10:55:41,043   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: interval[0:00:04], next run at: 2022-04-11 10:55:41 CST)" executed successfully
+2022-04-11 10:55:41,091   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" (scheduled at 2022-04-11 10:55:40+08:00)
+2022-04-11 10:55:41,155   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" (scheduled at 2022-04-11 10:55:40+08:00)
+2022-04-11 10:55:41,281   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" (scheduled at 2022-04-11 10:55:40+08:00)
+2022-04-11 10:55:41,627   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" executed successfully
+2022-04-11 10:55:41,752   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" executed successfully
+2022-04-11 10:55:41,957   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:41 CST)" executed successfully
+2022-04-11 10:55:42,525   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" (scheduled at 2022-04-11 10:55:42+08:00)
+2022-04-11 10:55:42,603   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" (scheduled at 2022-04-11 10:55:42+08:00)
+2022-04-11 10:55:42,762   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" (scheduled at 2022-04-11 10:55:42+08:00)
+2022-04-11 10:55:43,187   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" executed successfully
+2022-04-11 10:55:43,297   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" executed successfully
+2022-04-11 10:55:43,514   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:43 CST)" executed successfully
+2022-04-11 10:55:43,859   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:44 CST)" (scheduled at 2022-04-11 10:55:43+08:00)
+2022-04-11 10:55:43,922   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:44 CST)" (scheduled at 2022-04-11 10:55:43+08:00)
+2022-04-11 10:55:44,712   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:44 CST)" executed successfully
+2022-04-11 10:55:44,789   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:44 CST)" executed successfully
+2022-04-11 10:55:44,835   11568     INFO base_py3.py(28) - Running job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:45 CST)" (scheduled at 2022-04-11 10:55:44+08:00)
+2022-04-11 10:55:45,354   11568     INFO base_py3.py(41) - Job "JobSchedule.task_scheduler (trigger: cron[year='*', month='*', day='*', day_of_week='*', hour='*', minute='*', second='*/1'], next run at: 2022-04-11 10:55:45 CST)" executed successfully
+2022-04-11 10:55:45,525   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1041,6 +1379,14 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.9.1:
+2022-04-11 10:55:45,701   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:46,568   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_cron:job.test_task_1
+2022-04-11 10:55:46,868   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_cron:job.test_task_3
+2022-04-11 10:55:47,152   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_cron:job.test_task_2
+2022-04-11 10:55:47,561   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_interval:job.test_task_3
+2022-04-11 10:55:47,957   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_interval:job.test_task_2
+2022-04-11 10:55:48,286   11568     INFO base.py(632) - Removed job test:job_schedule:tag.test_interval:job.test_task_1
+2022-04-11 10:55:48,396   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1069,6 +1415,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.10.1:
+2022-04-11 10:55:48,618   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:49,469   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1097,6 +1445,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.11.1:
+2022-04-11 10:55:49,706   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:50,622   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1125,6 +1475,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.12.1:
+2022-04-11 10:55:50,830   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:52,041   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1153,6 +1505,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.13.1:
+2022-04-11 10:55:52,200   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:52,655   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1181,6 +1535,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.14.1:
+2022-04-11 10:55:52,890   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:53,456   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1209,6 +1565,8 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt1.15.1:
+2022-04-11 10:55:53,645   11568     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:54,117   11568     INFO base.py(203) - Scheduler has been shut down
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
@@ -1254,7 +1612,7 @@ goChart(chartData_en);
                 <a onfocus='this.blur();'>[x]</a>
             </div>
             <pre>pt2.1.1:
-2022-03-24 19:26:14,589 139884353611520     INFO base.py(171) - Scheduler started
+2022-04-11 10:55:54,194   11568     INFO base.py(171) - Scheduler started
 
 </pre>
             <div><ul class='figure_ul'></ul></div>
