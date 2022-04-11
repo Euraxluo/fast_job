@@ -18,7 +18,7 @@ from starlette.background import BackgroundTask
 from threading import Thread
 from apscheduler.schedulers.asyncio import AsyncIOScheduler  # type:ignore
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore  # type:ignore
-from apscheduler.jobstores.redis import RedisJobStore  # type:ignore
+from .redis_job_store import RedisJobStore  # type:ignore
 
 from fast_job.lock import *
 from fast_job.schema import TaskWorkRecord, Response
@@ -295,7 +295,7 @@ class JobSchedule(BackgroundTasks):
                 pipe.hincrby(load_key, job_key, 1)  # 为自己投票
                 pipe.expire(load_key, 30)  # 有效期30s
                 pipe.execute()
-                for i in range(2):
+                for i in range(1):
                     others = list(set([i.decode('utf8') for i in first_check[0]]) - {self.__distributed_id__})
                     for other in others:
                         pipe.hget(f"{self.__registry_key}.load:{other}", job_key)
@@ -336,7 +336,7 @@ class JobSchedule(BackgroundTasks):
             acquire = acquire_re_entrant_lock_with_timeout(conn=self.__redis__, lock_name=distributed_lock_key, identifier=self.__distributed_id__, acquire_timeout=0)
             flag = acquire(default=-1, transform=lambda x: self.__distributed_id__ if x is None else False)
             if not flag:
-                with self.__redis__.pipeline(True) as pipe:
+                with self.__redis__.pipeline(transaction=False) as pipe:
                     pipe.hset(load_key, next_job_key, 0)  # 不成功获取到锁，设置为0
                     pipe.expire(load_key, 30)
                     pipe.execute()
@@ -365,7 +365,7 @@ class JobSchedule(BackgroundTasks):
         else:
             current_job_key = job_id + ':' + str(time.time())
             next_job_key = job_id + ':' + str(time.time())
-        with self.load_balance(job_key=current_job_key, next_job_key=next_job_key, distributed=self.__distributed) as run:
+        with self.load_balance(job_key=current_job_key, next_job_key=next_job_key, distributed=JobSchedule.__distributed) as run:
             if run:
                 self.result = []
                 self.success = False
@@ -383,7 +383,7 @@ class JobSchedule(BackgroundTasks):
                 self.task_running_record(job_id=job_id, task_id=task_id, tag=tag, job_key=current_job_key)
 
     def init_scheduler(self, distributed=False) -> None:
-        self.__distributed = distributed
+        JobSchedule.__distributed = distributed
         if self.__redis_job_store__:
             job_stores = {'default': self.__redis_job_store__}
         else:
@@ -391,9 +391,14 @@ class JobSchedule(BackgroundTasks):
         self.__schedule__ = AsyncIOScheduler(jobstores=job_stores)
         self.__schedule__.start()
         # 上线注册
-        if self.__redis_job_store__ and self.__distributed:
+        if self.__redis_job_store__ and JobSchedule.__distributed:
             try:
-                self.__redis_job_store__.redis.zadd(self.__registry_key, {self.__distributed_id__: time.time()})
+                add_item = {self.__distributed_id__: time.time()}
+                pieces = []
+                for pair in add_item.items():
+                    pieces.append(pair[1])
+                    pieces.append(pair[0])
+                self.__redis_job_store__.redis.execute_command('ZADD', self.__registry_key, *pieces)
                 self.__redis_job_store__.redis.expire(self.__registry_key, 30)
                 self.__logger__.info({"JobSchedule:register": {"id": self.__distributed_id__}})
                 # 启动定时注册线程
@@ -406,12 +411,16 @@ class JobSchedule(BackgroundTasks):
     def cycle_registry(self):
         while True:
             if (time.time() - self.registry_time) > self.min_registry_time / 2:
-                with self.__redis_job_store__.redis.pipeline(transaction=True) as p:
+                with self.__redis_job_store__.redis.pipeline(transaction=False) as p:
                     p.zremrangebyscore(self.__registry_key, 0, time.time() - self.min_registry_time)
-                    p.zadd(self.__registry_key, {self.__distributed_id__: time.time()})  # 更新上线时间
+                    add_item = {self.__distributed_id__: time.time()}
+                    pieces = []
+                    for pair in add_item.items():
+                        pieces.append(pair[1])
+                        pieces.append(pair[0])
+                    p.execute_command('ZADD', self.__registry_key, *pieces) # 更新上线时间
                     p.expire(self.__registry_key, 30)
                     res = p.execute()
-
                 self.__logger__.info({"JobSchedule:register renew": {"id": self.__distributed_id__, "sleep": int(self.min_registry_time / 2), "expire": self.min_registry_time, "rem": res}})
                 self.registry_time = time.time()
                 time.sleep(int(self.min_registry_time / 2))

@@ -14,7 +14,6 @@ class RedisHelper(object):
         self._redis = redis.Redis(host=host, port=port, db=db,
                                   password=password,
                                   decode_responses=decode_responses)
-
     @property
     def redis(self) -> redis.Redis:
         return self._redis

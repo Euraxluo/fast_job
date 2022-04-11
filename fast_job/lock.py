@@ -126,7 +126,7 @@ def _renew_re_entrant_lock(conn: Redis, lock_name: str, identifier: str, lock_ti
     :param lock_timeout: 上锁超时时间ms
     :return:
     """
-    while _renew_re_entrant_lock_lua(conn, [lock_name], [lock_timeout, identifier]):
+    while _renew_re_entrant_lock_lua(conn, [lock_name], [lock_timeout, identifier],force_eval=True):
         # 若未续约成功则直接退出
         time.sleep(lock_timeout / 3000)
 
@@ -197,7 +197,7 @@ def acquire_re_entrant_lock_with_timeout(conn: Redis, lock_name: str, identifier
 
     # 判断是否超时监测
     def acquire_lock():
-        acquire_lock_lua_result = _acquire_re_entrant_lock_with_timeout_lua(conn, [lock_name], [30 * 1000 if lock_timeout == -1 else lock_timeout, identifier])
+        acquire_lock_lua_result = _acquire_re_entrant_lock_with_timeout_lua(conn, [lock_name], [30 * 1000 if lock_timeout == -1 else lock_timeout, identifier],force_eval=True)
 
         def result(*args, **kwargs):
             return acquire_lock_lua_result

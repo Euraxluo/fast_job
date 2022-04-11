@@ -5,7 +5,7 @@
 - license = "The MIT LICENSE"
 - repository = "https://github.com/Euraxluo/fast_job"
 - coverage : 74%
-- version : 0.1.*
+- version : 0.2.*
 
 ![test-report](https://gitee.com/Euraxluo/images/raw/master/pycharm/MIK-HQpicL.png)
 

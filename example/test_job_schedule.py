@@ -12,4 +12,4 @@ class TestJobSchedule(TestCase):
         from example.jobs import schedule
         from example.conftest import rdb as redis
 
-        schedule.setup(prefix='test:', logger=logger, redis=redis, distributed=True)
+        schedule.setup(prefix='{dml_ai}:', logger=logger, redis=redis, distributed=True)
